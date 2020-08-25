@@ -35,7 +35,14 @@ namespace InsertSubiektGTXAF.Module.BusinessObjects
         public decimal Cena { get;}
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Symbol { get;}
-        public string Opis { get; set; }
+
+        private string opis;
+        public string Opis { get { return opis; } 
+            set {
+                opis = value;
+                OnPropertyChanged(opis);
+            }
+        }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

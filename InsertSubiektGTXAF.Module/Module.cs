@@ -77,8 +77,7 @@ namespace InsertSubiektGTXAF.Module {
                 Asortyment commitedObj = obj as Asortyment;
                 if (commitedObj != null)
                 {
-                    Console.WriteLine();
-                    //_srvAsortymentow.ZmienOpis(commitedObj.Symbol, commitedObj.Opis);
+                    _srvAsortymentow.ZmienOpis(commitedObj.Symbol, commitedObj.Opis);
                 }
             }
         }

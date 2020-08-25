@@ -24,53 +24,24 @@ namespace InsertSubiektGTXAF.Module.Serwisy
             var rezultat = new BindingList<BusinessObjects.Asortyment>();
             foreach (dynamic dana in dane)
             {
-                var danaDoTabeli = SkonwertujCOMObject(dana);
+                var danaDoTabeli = KonwersjaDoAsortymentu(dana);
 
                 rezultat.Add(danaDoTabeli);
             }
             return rezultat;
         }
 
-        public BusinessObjects.Asortyment SkonwertujCOMObject(dynamic comObject)
+        public bool ZmienOpis(string symbol, string nowyOpis)
+        {
+            var towar = _aplikacja.TowaryManager.WczytajTowar(symbol);
+            towar.Opis = nowyOpis;
+            towar.Zapisz();
+            return true;
+        }
+
+        public BusinessObjects.Asortyment KonwersjaDoAsortymentu(dynamic comObject)
         {
             return new BusinessObjects.Asortyment(comObject.Nazwa, comObject.CenaKartotekowa, comObject.Symbol, comObject.Opis);
         }
-
-        ///// <summary>
-        ///// Zwraca wynik metody IAsortymenty.Znajdz(string Symbol)
-        ///// </summary>
-        ///// <param name="symbol"></param>
-        ///// <returns></returns>
-        //public IAsortyment PodajKonkretnyAsortyment(string symbol)
-        //{
-        //    var mgr = _aplikacja.PodajObiektTypu<IAsortymenty>();
-
-        //    return mgr.Znajdz(symbol);
-        //}
-
-        ///// <summary>
-        ///// Najpierw pobiera wszystkie Asortymenty, i potem zwraca element znaleziony pod przekazanym indexem
-        ///// </summary>
-        ///// <param name="indexWiersza">Index wiersza poszukiwanego asortymentu</param>
-        ///// <returns></returns>
-        //public Asortyment PodajKonkretnyAsortyment(int indexWiersza)
-        //{
-
-        //    var mgr = _aplikacja.PodajObiektTypu<IAsortymenty>();
-
-        //    var tablicaAsortymentow = mgr.Dane.Wszystkie().ToArray();
-        //    return tablicaAsortymentow[indexWiersza];
-        //}
-
-        //public bool ZmienOpis(string symbol, string nowyOpis)
-        //{
-        //    var mgr = _aplikacja.TowaryManager.Wybierz();
-        //    using (var e = )
-        //    {
-        //        e.Dane.Opis = nowyOpis;
-
-        //        return e.Zapisz();
-        //    }
-        //}
     }
 }
